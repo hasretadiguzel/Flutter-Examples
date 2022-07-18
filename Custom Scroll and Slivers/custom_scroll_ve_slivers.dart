@@ -23,12 +23,16 @@ class CollapsableToolbarOrnek extends StatelessWidget {
             ),
           ),
         ),
+
+        //Statik elemanli bir sliver list view
         SliverPadding(
           padding: EdgeInsets.all(4),
           sliver: SliverList(
             delegate: SliverChildListDelegate(sabitListeElemanlari),
           ),
         ),
+
+        //Elemanlari builder ile olusturulan bir list view
         SliverPadding(
             padding: EdgeInsets.all(4),
             sliver: SliverList(
@@ -36,9 +40,13 @@ class CollapsableToolbarOrnek extends StatelessWidget {
                   _dinamikElemanUretenFonksiyon,
                   childCount: 10),
             )),
+
+        //Elemanlara statik olusturulan ama extent mantiğiyla calisan listview
         SliverFixedExtentList(
             delegate: SliverChildListDelegate(sabitListeElemanlari),
             itemExtent: 100),
+
+        //Elemanlara dinamik olusturulan ama extent mantiğiyla calisan listview
         SliverFixedExtentList(
             delegate: SliverChildBuilderDelegate(_dinamikElemanUretenFonksiyon,
                 childCount: 6),
