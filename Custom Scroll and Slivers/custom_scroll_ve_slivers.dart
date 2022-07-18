@@ -10,7 +10,7 @@ class CollapsableToolbarOrnek extends StatelessWidget {
       slivers: <Widget>[
         SliverAppBar(
           backgroundColor: Colors.red,
-          expandedHeight: 100,
+          expandedHeight: 200,
           floating: false,
           pinned: true,
           snap: false,
@@ -22,6 +22,33 @@ class CollapsableToolbarOrnek extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
+        ),
+
+        //Sabit elemanlarla bir satirda kaç eleman olacağını soyledigimiz grid turu
+        SliverGrid(
+            delegate: SliverChildListDelegate(sabitListeElemanlari),
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2)),
+
+        //Dinamik(builder ile uretilen) elemanlarla bir satirda kaç eleman olacağını soyledigimiz grid turu
+        SliverGrid(
+            delegate: SliverChildBuilderDelegate(_dinamikElemanUretenFonksiyon,
+                childCount: 6),
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3)),
+
+        //Dinamik(builder ile uretilen) elemanlarla bir satirda bir elemanin max genisligini soylediğimiz grid turu
+        SliverGrid(
+          gridDelegate:
+              SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 100),
+          delegate: SliverChildBuilderDelegate(_dinamikElemanUretenFonksiyon,
+              childCount: 8),
+        ),
+
+        //Bunu dinamik (builder'lı) kullanamayiz
+        SliverGrid.count(
+          crossAxisCount: 6,
+          children: sabitListeElemanlari,
         ),
 
         //Statik elemanli bir sliver list view
